@@ -416,7 +416,8 @@ public class ReadUtils {
 
     public static int getReadCoordinateForReferenceCoordinateUpToEndOfRead(GATKSAMRecord read, int refCoord, ClippingTail tail) {
         final int leftmostSafeVariantPosition = Math.max(read.getSoftStart(), refCoord);
-        return getReadCoordinateForReferenceCoordinate(read.getSoftStart(), read.getCigar(), leftmostSafeVariantPosition, tail, false);
+        /* leipzig changed last argument to true from false to avoid weird runtime error */
+        return getReadCoordinateForReferenceCoordinate(read.getSoftStart(), read.getCigar(), leftmostSafeVariantPosition, tail, true);
     }
 
     public static int getReadCoordinateForReferenceCoordinate(final int alignmentStart, final Cigar cigar, final int refCoord, final ClippingTail tail, final boolean allowGoalNotReached) {
